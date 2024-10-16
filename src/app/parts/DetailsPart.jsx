@@ -76,174 +76,171 @@ export default function DeatailsPart({id}) {
                 </>}
 
 
-                <div className={!loading ? `p-4 h-[91vh] overflow-y-scroll` : `hidden`}>
+               <div className={!loading ? `p-4 h-[91vh] overflow-y-scroll` : `hidden`}>
+  {alldata && (
+    <div className="w-full md:h-auto">
+      <div className="w-full h-full relative">
+        {alldata && (
+          <>
+            <div className="w-full h-full flex">
+              {/* Background Image */}
+              <div
+                className="w-full h-[600px] absolute sm:h-[600px] bg-cover bg-center"
+                style={{
+                  backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${alldata?.imdbData[0]?.backdrop_path})`,
+                  filter: 'blur(10px)',
+                }}
+              ></div>
 
-                    {alldata && <div className="w-full md:h-auto">
+              {/* Content Section */}
+              <div className="w-full z-10 bg-[#ffffff42] md:p-6 sm:flex-row items-center sm:items-start sm:absolute sm:top-0 sm:left-0 sm:h-full sm:px-6 sm:py-8">
 
-                        <div className="w-full h-full relative">
-                            {alldata && <>
-                                <div className="w-full h-full flex">
-                                    {/* Background Image */}
-                                    <div
-                                        className="w-full h-[600px] absolute sm:h-[600px] bg-cover bg-center "
-                                        style={{
-                                            backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${alldata?.imdbData[0]?.backdrop_path})`,
-                                            filter: 'blur(10px)',
-                                        }}
-                                    >
-                                    </div>
-
-                                    {/* Content Section */}
-                                    <div className="w-full z-10 bg-[#ffffff42] md:p-6 sm:flex-row items-center sm:items-start sm:absolute sm:top-0 sm:left-0 sm:h-full sm:px-6 sm:py-8">
-
-                                        {/* Main Poster */}
-                                        <div className="lex-1 flex justify-center items-center py-4 sm:py-0 mx-auto sm:mx-0">
-                                            <img
-                                                className="w-[239px] h-[290px] sm:w-[269px] rounded-[15px]"
-                                                src={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${alldata?.imdbData[0]?.poster_path}`}
-                                                alt="Movie Poster"
-                                            />
-                                        </div>
-
-                                        {/* Movie Info */}
-                                        <div className="flex flex-col px-4 py-6 w-full sm:w-auto sm:ml-6 sm:py-0 justify-start sm:justify-evenly">
-                                            <div className="">
-                                                <div className="text-[1.75rem] sm:text-[1.5rem] text-[#212529] font-[800]">
-                                                    {alldata?.imdbData[0]?.name}
-                                                </div>
-                                                <div className="text-[#212529] font-[800] mt-2 sm:mt-4">
-                                                    {alldata?.imdbData[0]?.overview}
-                                                </div>
-                                            </div>
-
-                                            <div className="flex flex-row items-center space-x-3 mt-4 sm:mt-auto">
-                                                {/* Vote Average */}
-                                                <div className="text-[#212529] space-x-3 py-2 px-5 bg-[#5353537a] rounded-full flex items-center">
-                                                    <img
-                                                        className="w-[25px]"
-                                                        src={
-                                                            alldata?.imdbData[0]?.vote_average >= 9
-                                                                ? "https://cdn.hugeicons.com/icons/star-solid-rounded.svg"
-                                                                : alldata?.imdbData[0]?.vote_average >= 5
-                                                                    ? "https://cdn.hugeicons.com/icons/star-bulk-rounded.svg"
-                                                                    : "https://cdn.hugeicons.com/icons/star-twotone-rounded.svg"
-                                                        }
-                                                        alt="Rating Star"
-                                                    />
-                                                    <div
-                                                        className={
-                                                            alldata?.imdbData[0]?.vote_average >= 9
-                                                                ? `text-[#83ca20] font-[800]`
-                                                                : alldata?.imdbData[0]?.vote_average >= 5
-                                                                    ? `text-[#d1b721] font-[800]`
-                                                                    : `text-[#b6461a] font-[800]`
-                                                        }
-                                                    >
-                                                        {alldata?.imdbData[0]?.vote_average}
-                                                    </div>
-                                                </div>
-
-                                                {/* Vote Count */}
-                                                <div className="text-[#212529] bg-[#5353537a] py-2 px-5 font-bold rounded-full">
-                                                    Votes: {alldata?.imdbData[0]?.vote_count}
-                                                </div>
-
-                                                {/* Popularity */}
-                                                <div className="text-[#212529] bg-[#5353537a] py-2 px-5 font-bold rounded-full">
-                                                    Popularity: {alldata?.imdbData[0]?.popularity}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </>}
-                        </div>
-
-                        <div className="pt-4 flex flex-row space-x-3 items-center">
-
-                            {alldata && (
-                                <div className="text-[1.25rem] text-[#212529] font-bold fam">
-                                    Episodes
-                                </div>
-                            )}
-
-                            <div className="text-[#212529] h-[40px] flex items-center justify-center transition-all cursor-pointer group bg-[#53535342] hover:bg-[#5353537a] rounded-full px-5 py-[5px]">
-                                <span className="mx-2 h-[25px]">sessions</span>
-                                <div className={alldata?.numberOfSessions.map(r => r.dataSeason[r.dataSeason.length - 1]) < 9 ? `flex flex-row justify-start space-x-3 items-center h-full genNav w-0 group-hover:w-auto group-hover:max-w-[480px] duration-500 ease-in-out group-hover:overflow-x-hidden transition-all` : `flex flex-row justify-start space-x-3 items-center h-full genNav w-0 group-hover:w-auto group-hover:max-w-[480px] duration-500 ease-in-out group-hover:overflow-x-auto transition-all`}>
-                                    {alldata && alldata?.numberOfSessions?.map(r => (
-                                        <div
-                                            onClick={() => { get_epi_data(r.dataSeason, r.dataPost) }}
-                                            key={r.dataSeason} className="text-[#212529] rounded-md w-[40px] h-[25px] hidden group-hover:flex flex-row justify-center items-center transition-all cursor-pointer bg-[#53535342] hover:bg-[#5353537a]">
-                                            {r.dataSeason}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="grid grid-cols-3 gap-5 p-4 md:flex md:flex-row md:flex-wrap justify-center md:justify-start items-center md:items-start">
-                            {alldata && epidata ? epidata.map((item) => (
-                                <div
-                                    onClick={() => router.push(`/watch?q=${item?.href ? item.href.split('.co/')[1] : ''}`)}
-                                    className="border border-[#fff] truncate w-full md:w-[250px] flex justify-center flex-col" key={item.id}
-                                >
-                                    <div className="w-full h-auto md:max-h-[130px] relative rounded-[8px] group overflow-hidden">
-                                        {/* Image with scale effect on hover */}
-                                        <img
-                                            className="group-hover:scale-150 rounded-[8px] group-hover:opacity-90 ease-in"
-                                            src={`${item.postThumbnail.split('p/w')[0]}p/w500/${item.postThumbnail.split('p/w')[1].split('/')[1]}`}
-                                            alt={item.h2}
-                                            style={{ transitionDuration: '5s' }} // Long transition duration for scaling
-                                        />
-
-                                        {/* Framer Motion animation triggered on in view */}
-                                        <div className="bg-[#2c2c2c31] justify-center items-center hover:cursor-pointer absolute top-0 hidden group-hover:flex rounded-[8px] w-full h-full transition-all duration-500 delay-200 ease-in-out">
-                                            <img className="w-[60px]" src="https://cdn.hugeicons.com/icons/play-circle-bulk-rounded.svg" alt="Play button" />
-                                        </div>
-                                    </div>
-
-                                    {/* Text content */}
-                                    <div className="flex flex-col text-gray-500 dark:text-gray-400 truncate px-5 py-2">
-                                        <div className="truncate text-[#212529] font-[500]">{item.h2}</div>
-                                        <div className="truncate text-[#212529cb] text-[12px]">epi: {item.numEpi}</div>
-                                    </div>
-                                </div>
-                            )) : alldata?.sessionEpisodesArray?.map((item) => (
-                                <div
-                                    onClick={() => router.push(`/watch?q=${item?.href ? item.href.split('.co/')[1] : ''}`)}
-                                    className="border border-[#fff] truncate w-full md:w-[250px] flex justify-center flex-col" key={item.id}
-                                >
-                                    <div className="w-full h-auto md:max-h-[130px] relative rounded-[8px] group overflow-hidden">
-                                        {/* Image with scale effect on hover */}
-                                        <img
-                                            className="group-hover:scale-150 rounded-[8px] group-hover:opacity-90 ease-in"
-                                            src={`${item.postThumbnail.split('p/w')[0]}p/w500/${item.postThumbnail.split('p/w')[1].split('/')[1]}`}
-                                            alt={item.h2}
-                                            style={{ transitionDuration: '5s' }} // Long transition duration for scaling
-                                        />
-
-                                        {/* Framer Motion animation triggered on in view */}
-                                        <div className="bg-[#2c2c2c31] justify-center items-center hover:cursor-pointer absolute top-0 hidden group-hover:flex rounded-[8px] w-full h-full transition-all duration-500 delay-200 ease-in-out">
-                                            <img className="w-[60px]" src="https://cdn.hugeicons.com/icons/play-circle-bulk-rounded.svg" alt="Play button" />
-                                        </div>
-                                    </div>
-
-                                    {/* Text content */}
-                                    <div className="flex flex-col text-gray-500 dark:text-gray-400 truncate px-5 py-2">
-                                        <div className="truncate text-[#212529] font-[500]">{item.h2}</div>
-                                        <div className="truncate text-[#212529cb] text-[12px]">epi: {item.numEpi}</div>
-                                        <div className="truncate text-[#212529cb] text-[12px]">time: {item.time}</div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-
-                    </div>}
-
+                {/* Main Poster */}
+                <div className="flex-1 flex justify-center items-center py-4 sm:py-0 mx-auto sm:mx-0">
+                  <img
+                    className="w-[239px] h-[290px] sm:w-[269px] rounded-[15px]"
+                    src={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${alldata?.imdbData[0]?.poster_path}`}
+                    alt="Movie Poster"
+                  />
                 </div>
+
+                {/* Movie Info */}
+                <div className="flex flex-col px-4 py-6 w-full sm:w-auto sm:ml-6 sm:py-0 justify-start sm:justify-evenly">
+                  <div>
+                    <div className="text-[1.75rem] sm:text-[1.5rem] text-[#212529] font-[800]">
+                      {alldata?.imdbData[0]?.name}
+                    </div>
+                    <div className="text-[#212529] font-[800] mt-2 sm:mt-4">
+                      {alldata?.imdbData[0]?.overview}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-row items-center space-x-3 mt-4 sm:mt-auto">
+                    {/* Vote Average */}
+                    <div className="text-[#212529] space-x-3 py-2 px-5 bg-[#5353537a] rounded-full flex items-center">
+                      <img
+                        className="w-[25px]"
+                        src={
+                          alldata?.imdbData[0]?.vote_average >= 9
+                            ? "https://cdn.hugeicons.com/icons/star-solid-rounded.svg"
+                            : alldata?.imdbData[0]?.vote_average >= 5
+                            ? "https://cdn.hugeicons.com/icons/star-bulk-rounded.svg"
+                            : "https://cdn.hugeicons.com/icons/star-twotone-rounded.svg"
+                        }
+                        alt="Rating Star"
+                      />
+                      <div
+                        className={
+                          alldata?.imdbData[0]?.vote_average >= 9
+                            ? `text-[#83ca20] font-[800]`
+                            : alldata?.imdbData[0]?.vote_average >= 5
+                            ? `text-[#d1b721] font-[800]`
+                            : `text-[#b6461a] font-[800]`
+                        }
+                      >
+                        {alldata?.imdbData[0]?.vote_average}
+                      </div>
+                    </div>
+
+                    {/* Vote Count */}
+                    <div className="text-[#212529] bg-[#5353537a] py-2 px-5 font-bold rounded-full">
+                      Votes: {alldata?.imdbData[0]?.vote_count}
+                    </div>
+
+                    {/* Popularity */}
+                    <div className="text-[#212529] bg-[#5353537a] py-2 px-5 font-bold rounded-full">
+                      Popularity: {alldata?.imdbData[0]?.popularity}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Sessions and Episodes */}
+      <div className="pt-4 flex flex-row space-x-3 items-center">
+        {alldata && (
+          <div className="text-[1.25rem] text-[#212529] font-bold fam">Episodes</div>
+        )}
+
+        <div className="text-[#212529] h-[40px] flex items-center justify-center transition-all cursor-pointer group bg-[#53535342] hover:bg-[#5353537a] rounded-full px-5 py-[5px]">
+          <span className="mx-2 h-[25px]">sessions</span>
+          <div className={alldata?.numberOfSessions.map(r => r.dataSeason[r.dataSeason.length - 1]) < 9 ? `flex flex-row justify-start space-x-3 items-center h-full genNav w-0 group-hover:w-auto group-hover:max-w-[480px] duration-500 ease-in-out group-hover:overflow-x-hidden transition-all` : `flex flex-row justify-start space-x-3 items-center h-full genNav w-0 group-hover:w-auto group-hover:max-w-[480px] duration-500 ease-in-out group-hover:overflow-x-auto transition-all`}>
+            {alldata && alldata?.numberOfSessions?.map(r => (
+              <div
+                onClick={() => { get_epi_data(r.dataSeason, r.dataPost) }}
+                key={r.dataSeason} className="text-[#212529] rounded-md w-[40px] h-[25px] hidden group-hover:flex flex-row justify-center items-center transition-all cursor-pointer bg-[#53535342] hover:bg-[#5353537a]">
+                {r.dataSeason}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Episodes Grid */}
+      <div className="grid grid-cols-3 gap-5 p-4 md:flex md:flex-row md:flex-wrap justify-center md:justify-start items-center md:items-start">
+        {alldata && epidata ? epidata.map((item) => (
+          <div
+            onClick={() => router.push(`/watch?q=${item?.href ? item.href.split('.co/')[1] : ''}`)}
+            className="border border-[#fff] truncate w-full md:w-[250px] flex justify-center flex-col" key={item.id}
+          >
+            <div className="w-full h-auto md:max-h-[130px] relative rounded-[8px] group overflow-hidden">
+              {/* Image with scale effect on hover */}
+              <img
+                className="group-hover:scale-150 rounded-[8px] group-hover:opacity-90 ease-in"
+                src={`${item.postThumbnail.split('p/w')[0]}p/w500/${item.postThumbnail.split('p/w')[1].split('/')[1]}`}
+                alt={item.h2}
+                style={{ transitionDuration: '5s' }} // Long transition duration for scaling
+              />
+
+              {/* Framer Motion animation triggered on in view */}
+              <div className="bg-[#2c2c2c31] justify-center items-center hover:cursor-pointer absolute top-0 hidden group-hover:flex rounded-[8px] w-full h-full transition-all duration-500 delay-200 ease-in-out">
+                <img className="w-[60px]" src="https://cdn.hugeicons.com/icons/play-circle-bulk-rounded.svg" alt="Play button" />
+              </div>
+            </div>
+
+            {/* Text content */}
+            <div className="flex flex-col text-gray-500 dark:text-gray-400 truncate px-5 py-2">
+              <div className="truncate text-[#212529] font-[500]">{item.h2}</div>
+              <div className="truncate text-[#212529cb] text-[12px]">epi: {item.numEpi}</div>
+              <div className="truncate text-[#212529cb] text-[12px]">time: {item.time}</div>
+            </div>
+          </div>
+        )) : alldata?.sessionEpisodesArray?.map((item) => (
+          <div
+            onClick={() => router.push(`/watch?q=${item?.href ? item.href.split('.co/')[1] : ''}`)}
+            className="border border-[#fff] truncate w-full md:w-[250px] flex justify-center flex-col" key={item.id}
+          >
+            <div className="w-full h-auto md:max-h-[130px] relative rounded-[8px] group overflow-hidden">
+              {/* Image with scale effect on hover */}
+              <img
+                className="group-hover:scale-150 rounded-[8px] group-hover:opacity-90 ease-in"
+                src={`${item.postThumbnail.split('p/w')[0]}p/w500/${item.postThumbnail.split('p/w')[1].split('/')[1]}`}
+                alt={item.h2}
+                style={{ transitionDuration: '5s' }} // Long transition duration for scaling
+              />
+
+              {/* Framer Motion animation triggered on in view */}
+              <div className="bg-[#2c2c2c31] justify-center items-center hover:cursor-pointer absolute top-0 hidden group-hover:flex rounded-[8px] w-full h-full transition-all duration-500 delay-200 ease-in-out">
+                <img className="w-[60px]" src="https://cdn.hugeicons.com/icons/play-circle-bulk-rounded.svg" alt="Play button" />
+              </div>
+            </div>
+
+            {/* Text content */}
+            <div className="flex flex-col text-gray-500 dark:text-gray-400 truncate px-5 py-2">
+              <div className="truncate text-[#212529] font-[500]">{item.h2}</div>
+              <div className="truncate text-[#212529cb] text-[12px]">epi: {item.numEpi}</div>
+              <div className="truncate text-[#212529cb] text-[12px]">time: {item.time}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
+
 
 
             </div>
