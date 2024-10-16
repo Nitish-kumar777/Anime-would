@@ -63,7 +63,7 @@ export default function DeatailsPart({id}) {
             </div>
             <div className="line"></div>
 
-            <div className=" w-full h-full">
+            <div className=" w-full h-full flex">
 
                 <PcNav />
 
@@ -82,7 +82,7 @@ export default function DeatailsPart({id}) {
       <div className="w-full h-full relative">
         {alldata && (
           <>
-            <div className="w-full h-full flex">
+            <div className="w-full h-[600px] flex">
               {/* Background Image */}
               <div
                 className="w-full h-[600px] absolute sm:h-[600px] bg-cover bg-center"
