@@ -82,10 +82,10 @@ export default function DeatailsPart({id}) {
       <div className="w-full h-full relative">
         {alldata && (
           <>
-            <div className="w-full h-[600px] flex">
+            <div className="w-full h-[700px] flex">
               {/* Background Image */}
               <div
-                className="w-full h-[600px] absolute sm:h-[600px] bg-cover bg-center"
+                className="w-full h-[700px] absolute sm:h-[600px] bg-cover bg-center"
                 style={{
                   backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${alldata?.imdbData[0]?.backdrop_path})`,
                   filter: 'blur(10px)',
@@ -110,7 +110,7 @@ export default function DeatailsPart({id}) {
                     <div className="text-[1.75rem] sm:text-[1.5rem] text-[#212529] font-[800]">
                       {alldata?.imdbData[0]?.name}
                     </div>
-                    <div className="text-[#212529] font-[800] mt-2 sm:mt-4">
+                    <div className="text-[#212529] font-[400] mt-2 sm:mt-4">
                       {alldata?.imdbData[0]?.overview}
                     </div>
                   </div>
